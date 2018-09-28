@@ -16,6 +16,7 @@ if __name__ == "__main__":
                                             "Guardian Name(s)": row["Guardian Name(s)"]})
             return all_player_info
 
+
     # Create a text file named teams.txt that includes the name of a team, followed by the players on that team.
     # List all three teams and their players.
     def process_players(player_data):
@@ -30,26 +31,24 @@ if __name__ == "__main__":
             # print(player["Name"] + ", " + player["Soccer Experience"] + ", " + player["Guardian Name(s)"])
         #print(sorted_player_data)
         return sorted_player_data
-git
+
+
         # Create a text file named teams.txt that includes the name of a team, followed by the players on that team.
         # List all three teams and their players.
-
-
     def print_teams(sorted_player_data):
         """Take in a sorted set of player information and export it into a text file named teams.txt"""
-        with open('teams.txt', mode='w') as teams_txt:
-            team_writer = csv.writer(teams_txt, delimiter=',', quoting=csv.QUOTE_MINIMAL)
-            for team in TEAM_NAMES:
-                # In the list of teams include the team name on one line
-                team_writer.writerow([team])
-                # followed by a separate line for each player.
-                # Include the player's name, whether the player has experience playing soccer, and the player's guardian names.
-                # Separate each bit of player information by a comma. For example, the text file might start something like this:
-                for player in sorted_player_data:
-                    if player["Team Name"] == team:
-                        team_writer.writerow(
-                            [player["Name"] + ", " + player["Soccer Experience"] + ", " + player["Guardian Name(s)"]])
+        teams_file = open("teams.txt", "w+")
+        for team in TEAM_NAMES:
+            # In the list of teams include the team name on one line
+            teams_file.write(team+ "\n")
+            # followed by a separate line for each player.
+            # Include the player's name, whether the player has experience playing soccer, and the player's guardian names.
+            # Separate each bit of player information by a comma. For example, the text file might start something like this:
+            for player in sorted_player_data:
+                if player["Team Name"] == team:
+                    teams_file.write(player["Name"] + ", " + player["Soccer Experience"] + ", " + player["Guardian Name(s)"] + "\n")
 
+    #Create 18 text files ("welcome" letters to the players' guardians)
     def print_welcome_letters(sorted_player_data):
         """Create 18 text files ("welcome" letters to the players' guardians). You'll create 1 text file for each
         player. Use the player’s name as the name of the file, in lowercase and with underscores and ending in .txt.
